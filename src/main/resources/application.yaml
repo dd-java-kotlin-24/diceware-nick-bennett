@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: diceware
+
+
+diceware:
+  word-list: "classpath:eff_large_wordlist.txt"
