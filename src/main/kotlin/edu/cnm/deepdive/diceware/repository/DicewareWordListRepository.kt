@@ -1,18 +1,19 @@
 package edu.cnm.deepdive.diceware.repository
 
-import org.springframework.beans.factory.annotation.Value
+import edu.cnm.deepdive.diceware.configuration.DicewareConfiguration
 import org.springframework.core.io.ResourceLoader
 import org.springframework.stereotype.Service
 
 @Service
 class DicewareWordListRepository(
-    @Value("\${diceware.word-list}") wordListFile: String,
+    configuration: DicewareConfiguration,
     resourceLoader: ResourceLoader,
 ) : WordRepository {
 
     private val words: List<String>
 
     init {
+        val wordListFile = configuration.wordList
         val resource = resourceLoader.getResource(wordListFile)
         words = resource.inputStream
             .bufferedReader()
